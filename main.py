@@ -1,8 +1,7 @@
-from numpy.core.fromnumeric import var
+# from numpy.core.fromnumeric import var
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
-from pandas.core.construction import array
 from sklearn.preprocessing import LabelBinarizer
 from sklearn.neighbors import KNeighborsClassifier
 from scipy.spatial.distance import euclidean
@@ -14,18 +13,19 @@ data = {
   'ukuranBaju':['M','M','M','M','M','M','M','L','L','L','L','L','L','L','L','L','L','L'] 
 }
 dataFrame = pd.DataFrame(data)
+# print(dataFrame)
 
 # visualisasi data
-# fig, ax = plt.subplots()
-# for jk,d in dataFrame.groupby('ukuranBaju') :
-#   ax.scatter(d['tinggiBadan'], d['beratBadan'], label=jk)
+fig, ax = plt.subplots()
+for jk,d in dataFrame.groupby('ukuranBaju') :
+  ax.scatter(d['tinggiBadan'], d['beratBadan'], label=jk)
 
-# plt.legend(loc='upper left')
-# plt.title('Sebaran Data')
-# plt.xlabel('Tinggi badan')
-# plt.ylabel('Berat Badan (kg)')
-# plt.grid(True)
-# plt.show()
+plt.legend(loc='upper left')
+plt.title('Sebaran Data')
+plt.xlabel('Tinggi badan')
+plt.ylabel('Berat Badan (kg)')
+plt.grid(True)
+plt.show()
 
 # preprocesing data
 x_train =np.array(dataFrame[['tinggiBadan','beratBadan']])
@@ -49,7 +49,7 @@ tBadan = 155
 bBadan = 70
 arrayData = np.array([tBadan,bBadan]).reshape(1,-1)
 # print(arrayData)
-# jarakEuclidean = [euclidean(arrayData,d) for d in x_train] #d = hasil eucleadian pada tiap titik
+jarakEuclidean = [euclidean(arrayData,d) for d in x_train] #d = hasil eucleadian pada tiap titik
 
 
 prediksi = model.predict(arrayData) #Menghasilkan variabel boolean dari data y_train
